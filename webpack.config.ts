@@ -4,7 +4,10 @@ import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 
 const config: Configuration = {
+  mode: "development",
   entry: "./main.js",
+  // 开启sourcemap，定位源码进行调试
+  devtool: "inline-source-map",
   output: {
     path: resolve(__dirname, "dist"),
     filename: "bundle.js",
@@ -14,12 +17,14 @@ const config: Configuration = {
       {
         test: /\.css$/,
         // loader执行的顺序是从后往前（css-loader先读取css文件，然后通过style-loader将css注入到html中）
-        use: ["style-loader", MiniCssExtractPlugin.loader, "css-loader"],
+        use: [MiniCssExtractPlugin.loader, "css-loader"],
       },
     ],
   },
   plugins: [
-    new MiniCssExtractPlugin({ filename: "main.css" }),
+    new MiniCssExtractPlugin({
+      filename: "main.css",
+    }),
     new HtmlWebpackPlugin({ template: "./index.html" }),
   ],
 };
