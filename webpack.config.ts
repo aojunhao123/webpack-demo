@@ -19,6 +19,12 @@ const config: Configuration = {
         // loader执行的顺序是从后往前（css-loader先读取css文件，然后通过style-loader将css注入到html中）
         use: [MiniCssExtractPlugin.loader, "css-loader"],
       },
+      {
+        // 处理ts文件
+        test: /\.ts$/,
+        use: "ts-loader",
+        exclude: /node_modules/,
+      },
     ],
   },
   plugins: [
