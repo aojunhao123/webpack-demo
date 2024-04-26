@@ -1,5 +1,7 @@
 import { resolve } from "path";
 import { Configuration } from "webpack";
+import MiniCssExtractPlugin from "mini-css-extract-plugin";
+import HtmlWebpackPlugin from "html-webpack-plugin";
 
 const config: Configuration = {
   entry: "./main.js",
@@ -12,10 +14,14 @@ const config: Configuration = {
       {
         test: /\.css$/,
         // loader执行的顺序是从后往前（css-loader先读取css文件，然后通过style-loader将css注入到html中）
-        use: ["style-loader", "css-loader"],
+        use: ["style-loader", MiniCssExtractPlugin.loader, "css-loader"],
       },
     ],
   },
+  plugins: [
+    new MiniCssExtractPlugin({ filename: "main.css" }),
+    new HtmlWebpackPlugin({ template: "./index.html" }),
+  ],
 };
 
 export default config;
