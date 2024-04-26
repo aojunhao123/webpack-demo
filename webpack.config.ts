@@ -5,7 +5,13 @@ import HtmlWebpackPlugin from "html-webpack-plugin";
 
 const config: Configuration = {
   mode: "development",
-  entry: "./main.js",
+  entry: "./src/index.ts",
+  resolve: {
+    alias: {
+      "@": resolve(__dirname, "src"),
+    },
+    extensions: [".ts", ".tsx", ".js", ".jsx"],
+  },
   // 开启sourcemap，定位源码进行调试
   devtool: "inline-source-map",
   output: {
@@ -31,7 +37,7 @@ const config: Configuration = {
     new MiniCssExtractPlugin({
       filename: "main.css",
     }),
-    new HtmlWebpackPlugin({ template: "./index.html" }),
+    new HtmlWebpackPlugin({ template: "./public/index.html" }),
   ],
 };
 
