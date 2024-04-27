@@ -1,6 +1,7 @@
 import show from "@/utils/show";
-import "./index.css";
 import Card from "@/components/Card";
+import "./index.css";
+import "@/styles/style.less";
 
 show("webpack");
 Card();

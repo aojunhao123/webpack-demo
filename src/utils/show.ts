@@ -1,5 +1,11 @@
+import img from "@/img/WechatIMG1.jpg";
+
 function show(content: string) {
-  document.getElementById("app")!.innerText = "Hello," + content;
+  const root = document.getElementById("app");
+  root!.innerText = "Hello," + content;
+  const myImg = new Image();
+  myImg.src = img;
+  root!.appendChild(myImg);
 }
 
 export default show;
